@@ -1,0 +1,66 @@
+replicaCount: 1
+
+image:
+  repository: hayk96/alerta-web
+  tag: 8.7.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 200
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+alertaAdminPassword: ALERTA_ADMIN_PASSWORD
+alertaAdminUsers:
+  - admin
+
+alertaAdminKey: ALERTA_ADMIN_KEY
+alertaApiKey:   ALERTA_ADMIN_KEY
+
+alertaInstallPlugins:
+  - prometheus
+  - normalise
+  - enhance
+
+# ref: http://docs.alerta.io/en/latest/configuration.html
+alertaConfig:
+  DEBUG: "False"
+  AUTH_REQUIRED: "True"
+  SIGNUP_ENABLED: "False"
+  DELETE_EXPIRED_AFTER: 60
+  DELETE_INFO_AFTER: 60
+  COLUMNS: "['severity', 'status', 'lastReceiveTime', 'environment', 'service', 'resource', 'event', 'value', 'text']"
+  ACTIONS: "['createIssue', 'updateIssue']"
+  PLUGINS: "['prometheus', 'normalise', 'enhance']"
+  ALERTMANAGER_API_URL: '"http://prometheus-alertmanager.svc"'
+  ALERTMANAGER_SILENCE_FROM_ACK: "True"
+  LOG_HANDLERS: "['console']"
+  COLOR_MAP: "{
+  'severity': {
+    'security': '#000000',
+    'critical': 'red',
+    'major' : '#cf7719',
+    'minor' : '#9c812a',
+    'warning': '#1E90FF',
+    'indeterminate': '#a32cf2',
+    'ok': '#00CC00',
+    'unknown': 'silver'
+  },
+  'text': 'white'
+  }"
+
+postgresql:
+  enabled: true
+  postgresqlDatabase: alerta
+  postgresqlUsername: alerta
+  postgresqlPassword: PG_ALERTA_PASSWORD
+  persistence:
+    enabled: true
+    size: 1Gi
