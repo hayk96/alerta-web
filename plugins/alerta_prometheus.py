@@ -162,7 +162,7 @@ class AlertmanagerSilence(PluginBase):
                 raise RuntimeError("Alertmanager: ERROR - %s" % e)
             LOG.debug('Alertmanager: Added silenceId %s to attributes', silenceId)
 
-        elif status == 'open':
+        elif action == 'unack':
             LOG.debug('Alertmanager: Remove silence for alertname=%s instance=%s environment=%s customer=%s', alert.event, alert.resource)
 
             silenceId = alert.attributes.get('silenceId', None)
