@@ -67,6 +67,7 @@ alertaConfig:
     'warning': '#1E90FF',
     'indeterminate': '#a32cf2',
     'ok': '#00CC00',
+    'normal': '#35f2b6',
     'unknown': 'silver'
   },
   'text': 'white'
