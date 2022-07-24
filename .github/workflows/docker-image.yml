@@ -6,7 +6,10 @@ env:
   
 on:
   pull_request:
-    branches: [ "fake-main" ]
+    branches:
+      - "fake-main"
+    types:
+      - "closed"
     paths:
       - plugins/**
       - logo/**
@@ -15,8 +18,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
