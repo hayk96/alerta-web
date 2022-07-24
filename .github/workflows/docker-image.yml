@@ -1,0 +1,35 @@
+name: Alerta Web Docker Image CI
+
+env:
+  IMAGE_NAME: alerta-web
+  IMAGE_VERSION: 8.7.0
+  
+on:
+  push:
+    branches: [ "gh-actions-1" ]
+    paths:
+      - plugins/**
+      - logo/**
+      - Dockerfile
+      - .github/workflows/docker-image.yml
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: docker:login
+      env:
+        DOCKERHUB_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+        DOCKERHUB_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
+      run: |
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+        
+    - name: build:$IMAGE_NAME
+      run: docker build . --file Dockerfile --tag $IMAGE_NAME:$IMAGE_VERSION --tag $IMAGE_NAME:latest
+
+    - name: push:$IMAGE_NAME
+      run: docker push $DOCKERHUB_USERNAME/$IMAGE_NAME
