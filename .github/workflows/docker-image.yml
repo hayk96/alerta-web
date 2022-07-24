@@ -32,4 +32,4 @@ jobs:
       run: docker build . --file Dockerfile --tag $IMAGE_NAME:$IMAGE_VERSION --tag $IMAGE_NAME:latest
 
     - name: push:alerta-web
-      run: docker push ${{env.DOCKERHUB_USERNAME}}/$IMAGE_NAME
+      run: docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:test
