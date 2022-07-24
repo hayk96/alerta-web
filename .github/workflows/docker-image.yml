@@ -28,8 +28,8 @@ jobs:
       run: |
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         
-    - name: build:$IMAGE_NAME
+    - name: build:alerta-web
       run: docker build . --file Dockerfile --tag $IMAGE_NAME:$IMAGE_VERSION --tag $IMAGE_NAME:latest
 
-    - name: push:$IMAGE_NAME
-      run: docker push $DOCKERHUB_USERNAME/$IMAGE_NAME
+    - name: push:alerta-web
+      run: docker push ${{env.DOCKERHUB_USERNAME}}/$IMAGE_NAME
