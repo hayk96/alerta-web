@@ -7,9 +7,9 @@ env:
 on:
   pull_request:
     branches:
-      - "main"
+      - fake-main
     types:
-      - "closed"
+      - closed
     paths:
       - logo/**
       - plugins/**
