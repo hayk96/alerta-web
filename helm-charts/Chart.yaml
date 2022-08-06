@@ -4,6 +4,11 @@ description: A Helm chart for Kubernetes
 name: alerta
 version: 0.3.0
 home: https://github.com/hayk96/alerta-web
+dependencies:
+  - name: postgresql
+    version: "10.16.2"
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
 sources:
   - https://github.com/alerta/alerta
   - https://github.com/alerta/alerta-webui
