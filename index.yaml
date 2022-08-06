@@ -17,6 +17,4 @@ entries:
     keywords:
       - monitoring
       - alerting
-    urls:
-      - https://github.com/hayk96/alerta-web/releases/download/alerta-0.3.0/alerta-0.3.0.tgz
 generated: "2022-08-07T01:25:43.904584+04:00"
