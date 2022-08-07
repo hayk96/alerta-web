@@ -1,4 +1,6 @@
 # alerta-web
+[![Alerta Web Docker Image CI](https://github.com/hayk96/alerta-web/actions/workflows/docker-image.yml/badge.svg)](https://github.com/hayk96/alerta-web/actions/workflows/docker-image.yml)
+
 alerta/alerta-web project with custom modifications
 
 #### Deployment via Helm
