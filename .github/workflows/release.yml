@@ -1,10 +1,13 @@
 on:
-  push:
+  pull_request:
     branches:
-      - hayk96-patch-1
+      - main
+    types:
+      - closed
 
 jobs:
   release:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,7 +30,6 @@ jobs:
           helm repo add bitnami https://charts.bitnami.com/bitnami        
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.0
+        uses: helm/chart-releaser-action@v1.1.0
         env:
-          charts_dir: charts
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
