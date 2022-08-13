@@ -25,21 +25,4 @@ entries:
     urls:
     - https://github.com/hayk96/alerta-web/releases/download/alerta-0.4.0/alerta-0.4.0.tgz
     version: 0.4.0
-  - apiVersion: v2
-    appVersion: 8.7.0
-    created: "2022-08-07T00:06:56.762759+04:00"
-    description: A Helm chart for Kubernetes
-    home: https://github.com/hayk96/alerta-web
-    keywords:
-    - monitoring
-    - alerting
-    maintainers:
-    - name: Hayk Davtyan
-      url: https://github.com/hayk96
-    name: alerta
-    sources:
-    - https://github.com/alerta/alerta
-    - https://github.com/alerta/alerta-webui
-    urls: null
-    version: 0.3.0
 generated: "2022-08-13T14:01:49.501062108Z"
