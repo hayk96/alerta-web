@@ -16,5 +16,5 @@ Once Helm is set up properly, start to use the chart as follows:
 ```console
 helm repo add alerta-web https://hayk96.github.io/alerta-web
 helm repo update
-helm install alerta-web/alerta-web
+helm install alerta-web alerta-web/alerta-web
 ```
