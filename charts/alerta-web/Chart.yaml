@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: "8.7.0"
 description: A Helm chart for Kubernetes
 name: alerta-web
-version: 0.4.0
+version: 0.1.0
 home: https://github.com/hayk96/alerta-web
 dependencies:
   - name: postgresql
