@@ -3,6 +3,31 @@ entries:
   alerta-web:
   - apiVersion: v2
     appVersion: 8.7.0
+    created: "2022-08-16T21:19:05.102218235Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.16.2
+    description: A Helm chart for Kubernetes
+    digest: ebdcdf1fc2791a4f4bcce8ecc3744d7213c0b676ce8da0db86f6e20681eddd5d
+    home: https://github.com/hayk96/alerta-web
+    icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x310.png.png
+    keywords:
+    - monitoring
+    - alerting
+    maintainers:
+    - name: Hayk Davtyan
+      url: https://github.com/hayk96
+    name: alerta-web
+    sources:
+    - https://github.com/alerta/alerta
+    - https://github.com/alerta/alerta-webui
+    urls:
+    - https://github.com/hayk96/alerta-web/releases/download/alerta-web-0.1.1/alerta-web-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 8.7.0
     created: "2022-08-13T14:17:34.547529352Z"
     dependencies:
     - condition: postgresql.enabled
