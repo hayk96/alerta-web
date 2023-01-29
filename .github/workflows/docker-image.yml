@@ -43,5 +43,6 @@ jobs:
 
     - name: push:alerta-web
       run: |
+        docker images
         docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch
 #        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest
