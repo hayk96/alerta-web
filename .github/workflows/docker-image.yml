@@ -5,14 +5,11 @@ env:
   IMAGE_TAG: 8.7.0
   
 on:
-  push:
+  pull_request:
     branches:
-      - multiplatform-image
-#  pull_request:
-#    branches:
-#      - main
-#    types:
-#      - closed
+      - main
+    types:
+      - closed
     paths:
       - logo/**
       - plugins/**
@@ -21,7 +18,7 @@ on:
 
 jobs:
   build:
-#    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     container:
       image: jdrouet/docker-with-buildx:stable
@@ -35,8 +32,8 @@ jobs:
       run: |
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         
-    - name: build-&-push:alerta-web
+    - name: buildx-&-push:alerta-web
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build . --push --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch  --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
+        docker buildx build . --push --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
