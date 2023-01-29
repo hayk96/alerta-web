@@ -44,7 +44,7 @@ jobs:
         docker buildx create --use
         docker buildx build . --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
 
-    - name: push:alerta-web
-      run: |
-        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG
-        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest
+#    - name: push:alerta-web
+#      run: |
+#        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG
+#        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest
