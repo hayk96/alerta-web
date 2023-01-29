@@ -2,7 +2,7 @@ name: Alerta Web Docker Image CI
 
 env:
   IMAGE_NAME: alerta-web
-  IMAGE_TAG: multi-x-arch
+  IMAGE_TAG: 8.7.0
   
 on:
   push:
@@ -39,9 +39,9 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build . --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG  --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
+        docker buildx build . --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch  --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
 
     - name: push:alerta-web
       run: |
-        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:$IMAGE_TAG
+        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch
 #        docker push ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:latest
