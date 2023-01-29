@@ -39,7 +39,7 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build . --load --output=type=docker --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch  --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
+        docker buildx build . --load --file Dockerfile --build-arg version=$IMAGE_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$IMAGE_NAME:multi-x-arch  --platform linux/arm64/v8,linux/amd64 --cache-from $IMAGE_NAME:latest
 
     - name: push:alerta-web
       run: |
