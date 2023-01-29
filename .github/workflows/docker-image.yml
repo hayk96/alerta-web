@@ -25,9 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: jdrouet/docker-with-buildx:stable
-    env:
-      DOCKER_HOST: tcp://docker:2375/
-      DOCKER_DRIVER: overlay2
+#    env:
+#      DOCKER_HOST: tcp://docker:2375/
+#      DOCKER_DRIVER: overlay2
     steps:
     - uses: actions/checkout@v3
     
