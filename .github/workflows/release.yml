@@ -4,6 +4,8 @@ on:
       - main
     types:
       - closed
+    paths:
+      - charts/**      
 
 jobs:
   release:
