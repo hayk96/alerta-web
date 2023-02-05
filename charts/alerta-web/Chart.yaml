@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: "8.7.0"
 description: A Helm chart for Kubernetes
 name: alerta-web
-version: 0.1.2
+version: 0.1.3
 home: https://github.com/hayk96/alerta-web
 icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x310.png.png
 dependencies:
