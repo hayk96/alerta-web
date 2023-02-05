@@ -82,3 +82,13 @@ postgresql:
   persistence:
     enabled: true
     size: 1Gi
+
+# Use already existing database. Currently, supported type is Postgres with version 11.x
+useExistingDatabase: {}
+#  type: postgresql
+#  endpoint: example-postgresql.default.svc:5432
+#  database: EXISTING_DATABASE_NAME
+#  auth:
+#    enabled: true
+#    username: EXISTING_USERNAME
+#    password: EXISTING_PASSWORD
