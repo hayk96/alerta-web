@@ -8,7 +8,7 @@ icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x3
 dependencies:
   - name: postgresql
     version: "10.16.2"
-    repository: https://charts.bitnami.com/bitnami
+    repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
     condition: postgresql.enabled
 sources:
   - https://github.com/alerta/alerta
