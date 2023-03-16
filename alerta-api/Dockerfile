@@ -1,5 +1,5 @@
-FROM ghcr.io/alerta/alerta-api:${version}
 ARG version
+FROM ghcr.io/alerta/alerta-api:${version}
 ENV FLASK_SKIP_DOTENV=1
 LABEL maintainer="Hayk Davtyan"
 RUN apt-get update -y && apt-get install -y git \
