@@ -1,2 +1,3 @@
-FROM --platform=linux/amd64 ghcr.io/alerta/alerta-webui:latest
+ARG version
+FROM ghcr.io/alerta/alerta-webui:${version}
 COPY logo/* /usr/share/nginx/html
