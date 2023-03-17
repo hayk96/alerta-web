@@ -8,8 +8,7 @@ env:
   SVR_IMG_TAG: latest
 
   WEB_IMG_NAME: alerta-webui
-  WEB_IMG_TAG: latest
-
+  WEB_IMG_TAG: latest@9992f9743ed7b13c441e456b9683825c175a4c29222d50c006cc11e3a39f721d
   
 on:
   push:
@@ -44,6 +43,7 @@ jobs:
 
     - name: buildx-&-push
       run: |
+        IMG_TAG=$(echo "$WEB_IMG_TAG" | awk -F@ '{print $1}')
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build $WEB_IMG_NAME --push --file $WEB_IMG_NAME/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest     
+        docker buildx build $WEB_IMG_NAME --push --file $WEB_IMG_NAME/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64
