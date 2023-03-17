@@ -4,7 +4,7 @@ env:
   SVR_IMG_NAME: alerta-server
   SVR_IMG_TAG: latest
 
-  WEB_IMG_NAME: alerta-web
+  WEB_IMG_NAME: alerta-webui
   WEB_IMG_TAG: 8.7.0
 
   
