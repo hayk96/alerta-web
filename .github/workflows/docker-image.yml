@@ -1,6 +1,9 @@
 name: Alerta Docker Image CI
 
 env:
+  DOCKERHUB_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+  DOCKERHUB_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
+
   SVR_IMG_NAME: alerta-server
   SVR_IMG_TAG: latest
 
@@ -15,25 +18,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-alerta-server:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     
     - name: docker:login
-      env:
-        DOCKERHUB_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
-        DOCKERHUB_PASSWORD: ${{secrets.DOCKERHUB_PASSWORD}}
       run: |
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
 
-    - name: buildx-&-push:alerta-server
+    - name: buildx-&-push
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
         docker buildx build $SVR_IMG_NAME --push --file $SVR_IMG_NAME/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
 
-    - name: buildx-&-push:alerta-webui
+ build-alerta-webui:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: docker:login
+      run: |
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+
+    - name: buildx-&-push
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
