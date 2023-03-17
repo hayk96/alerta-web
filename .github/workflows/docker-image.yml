@@ -37,4 +37,4 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build alerta-webui --push --file alerta-server/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest        
+        docker buildx build alerta-webui --push --file alerta-webui/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest        
