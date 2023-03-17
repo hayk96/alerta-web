@@ -31,7 +31,7 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build alerta-api --push --file alerta-server/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
+        docker buildx build alerta-server --push --file alerta-server/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
 
     - name: buildx-&-push:alerta-webui
       run: |
