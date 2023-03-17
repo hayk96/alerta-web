@@ -31,10 +31,10 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build alerta-server --push --file alerta-server/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
+        docker buildx build $SVR_IMG_NAME --push --file $SVR_IMG_NAME/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
 
     - name: buildx-&-push:alerta-webui
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build alerta-webui --push --file alerta-webui/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest        
+        docker buildx build $WEB_IMG_NAME --push --file $WEB_IMG_NAME/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest        
