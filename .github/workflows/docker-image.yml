@@ -28,4 +28,4 @@ jobs:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         
     - name: build:alerta-api
-      run: docker build alerta-api/ --file alerta-api/Dockerfile --build-arg version=$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:latest
+      run: docker build alerta-api/ --file alerta-server/Dockerfile --build-arg version=$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:latest
