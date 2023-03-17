@@ -1,8 +1,8 @@
 name: Alerta Docker Image CI
 
 env:
-  API_IMG_NAME: alerta-api
-  API_IMG_TAG: latest
+  SVR_IMG_NAME: alerta-server
+  SVR_IMG_TAG: latest
 
   WEB_IMG_NAME: alerta-web
   WEB_IMG_TAG: 8.7.0
@@ -28,4 +28,4 @@ jobs:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         
     - name: build:alerta-api
-      run: docker build alerta-api/ --file alerta-server/Dockerfile --build-arg version=$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:$API_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$API_IMG_NAME:latest
+      run: docker build alerta-api/ --file alerta-server/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest
