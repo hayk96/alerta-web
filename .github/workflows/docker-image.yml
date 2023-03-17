@@ -33,7 +33,7 @@ jobs:
         docker buildx create --use
         docker buildx build $SVR_IMG_NAME --push --file $SVR_IMG_NAME/Dockerfile --build-arg version=$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:$SVR_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$SVR_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $SVR_IMG_NAME:latest
 
- build-alerta-webui:
+  build-alerta-webui:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -46,4 +46,4 @@ jobs:
       run: |
         docker run -d --rm --privileged tonistiigi/binfmt --install all
         docker buildx create --use
-        docker buildx build $WEB_IMG_NAME --push --file $WEB_IMG_NAME/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest        
+        docker buildx build $WEB_IMG_NAME --push --file $WEB_IMG_NAME/Dockerfile --build-arg version=$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:$WEB_IMG_TAG --tag ${{secrets.DOCKERHUB_USERNAME}}/$WEB_IMG_NAME:latest --platform linux/arm64/v8,linux/amd64 --cache-from $WEB_IMG_NAME:latest     
