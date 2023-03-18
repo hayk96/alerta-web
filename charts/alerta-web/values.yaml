@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: hayk96/alerta-web
-  tag: 8.7.0
+  tag: 9.0.0
   pullPolicy: IfNotPresent
 
 service:
@@ -54,7 +54,7 @@ alertaConfig:
   DELETE_INFO_AFTER: 60
   COLUMNS: "['severity', 'status', 'lastReceiveTime', 'environment', 'service', 'resource', 'event', 'value', 'text']"
   ACTIONS: "['createIssue', 'updateIssue']"
-  PLUGINS: "['prometheus', 'normalise', 'enhance']"
+  PLUGINS: "['prometheus', 'enhance']"
   ALERTMANAGER_API_URL: '"http://prometheus-alertmanager.svc"'
   ALERTMANAGER_SILENCE_FROM_ACK: "True"
   LOG_HANDLERS: "['console']"
@@ -76,9 +76,23 @@ alertaConfig:
 
 postgresql:
   enabled: true
-  postgresqlDatabase: alerta
-  postgresqlUsername: alerta
-  postgresqlPassword: PG_ALERTA_PASSWORD
-  persistence:
-    enabled: true
-    size: 1Gi
+  auth:
+    database: alerta
+    username: alerta
+    password: PG_ALERTA_PASSWORD
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+  # Disables persistence of replicas PgSQL
+  readReplicas: {persistence: {enabled: false}}
+
+# Use already existing database. Currently, supported type is Postgres.
+useExistingDatabase: {}
+#  type: postgresql
+#  endpoint: example-postgresql.default.svc:5432
+#  database: EXISTING_DATABASE_NAME
+#  auth:
+#    enabled: true
+#    username: EXISTING_USERNAME
+#    password: EXISTING_PASSWORD
