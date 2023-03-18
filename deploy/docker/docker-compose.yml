@@ -1,0 +1,28 @@
+version: "3.5"
+
+services:
+  alerta-web:
+    container_name: "alerta-web"
+    image: "hayk96/alerta-web:latest"
+    environment:
+      DATABASE_URL: "postgresql://alerta:alerta@alerta-db:5432/alerta"
+      ADMIN_USERS: "admin"
+      ADMIN_PASSWORD: "admin"
+      AUTH_REQUIRED: "True"
+      SIGNUP_ENABLED: "False"
+      ADMIN_KEY: "1111-2222-3333-4444"
+      ALERTA_API_KEY: "1111-2222-3333-4444"
+      INSTALL_PLUGINS:  "prometheus,enhance"
+      ALERTMANAGER_API_URL: "https://your-alertmanager.com"
+      ALERTMANAGER_SILENCE_FROM_ACK: "True"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - alerta-db
+  alerta-db:
+    container_name: "alerta-db"
+    image: "postgres:15-alpine"
+    environment:
+      POSTGRES_DB: "alerta"
+      POSTGRES_USER: "alerta"
+      POSTGRES_PASSWORD: "alerta"
