@@ -4,7 +4,7 @@ description: A Helm chart for Kubernetes
 name: alerta-web
 version: 0.1.5
 home: https://github.com/hayk96/alerta-web
-icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x310.png.png
+icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x310.png
 dependencies:
   - name: postgresql
     version: "12.2.3"
