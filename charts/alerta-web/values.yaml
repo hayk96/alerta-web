@@ -1,5 +1,10 @@
-replicaCount: 1
+## nameOverride String to partially override alerta.fullname template (will maintain the release name)
+nameOverride: ""
 
+## fullnameOverride String to fully override alerta.fullname template
+fullnameOverride: ""
+
+replicaCount: 1
 image:
   repository: hayk96/alerta-web
   tag: 9.0.0
@@ -25,6 +30,22 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+## Affinity settings for pod assignment
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+affinity: {}
+
+## Node labels for Alerta pod assignment
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+## Node tolerations for scheduling to nodes with taints
+## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+tolerations: []
+  # - key: "key"
+  #   operator: "Equal|Exists"
+  #   value: "value"
+  #   effect: "NoSchedule|PreferNoSchedule|NoExecute(1.6 only)"
+
 resources:
   limits:
     cpu: 200m
@@ -45,7 +66,7 @@ alertaInstallPlugins:
   - normalise
   - enhance
 
-# ref: http://docs.alerta.io/en/latest/configuration.html
+## ref: http://docs.alerta.io/en/latest/configuration.html
 alertaConfig:
   DEBUG: "False"
   AUTH_REQUIRED: "True"
@@ -74,6 +95,13 @@ alertaConfig:
   'text': 'white'
   }"
 
+## ref: https://docs.alerta.io/webui/configuration.html#webui-config
+## must be a string, so you have to add a | after alertaWebUIConfig:
+alertaWebUIConfig:
+  # {
+  #   "endpoint": "http://localhost:8080"
+  # }
+
 postgresql:
   enabled: true
   auth:
@@ -87,7 +115,7 @@ postgresql:
   # Disables persistence of replicas PgSQL
   readReplicas: {persistence: {enabled: false}}
 
-# Use already existing database. Currently, supported type is Postgres.
+## Use already existing database. Currently, supported type is Postgres.
 useExistingDatabase: {}
 #  type: postgresql
 #  endpoint: example-postgresql.default.svc:5432
