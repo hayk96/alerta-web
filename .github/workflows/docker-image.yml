@@ -2,7 +2,7 @@ name: Alerta Web Docker Image CI
 
 env:
   IMAGE_NAME: alerta-web
-  IMAGE_TAG: 9.0.1
+  IMAGE_TAG: 9.0.2
   
 on:
   pull_request:
