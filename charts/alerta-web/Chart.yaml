@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: "9.0.2"
+appVersion: "9.0.3"
 description: A Kubernetes Helm chart of Alerta monitoring system
 name: alerta-web
-version: 0.1.8
+version: 0.1.9
 home: https://github.com/hayk96/alerta-web
 icon: https://raw.githubusercontent.com/hayk96/alerta-web/main/logo/mstile-310x310.png
 dependencies:
