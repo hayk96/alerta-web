@@ -7,7 +7,7 @@ fullnameOverride: ""
 replicaCount: 1
 image:
   repository: hayk96/alerta-web
-  tag: 9.0.3
+  tag: 9.0.4
   pullPolicy: IfNotPresent
 
 service:
