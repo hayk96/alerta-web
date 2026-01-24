@@ -104,6 +104,8 @@ alertaWebUIConfig:
 
 postgresql:
   enabled: true
+  image:
+    registry: bitnamilegacy/postgresql
   auth:
     database: alerta
     username: alerta
